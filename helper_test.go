@@ -109,7 +109,6 @@ func TestReadLineValue(t *testing.T) {
 }
 
 func TestParseData(t *testing.T) {
-
 	w := WhoisInfo{}
 	w.AdminC = parseRPSLValue(WHOIS_DATA_RPSL, "inetnum", "admin-c")
 
@@ -123,17 +122,17 @@ func TestParseData(t *testing.T) {
 		t.Fatalf("No expected inetnum data: %s", w.AdminC)
 	}
 
-	t.Logf("inetnum admin-c: ", w.AdminC)
+	t.Logf("inetnum admin-c: %s", w.AdminC)
 
 	if w.Person.Name != "Vargonen LIR Admin" {
 		t.Fatalf("No expected person data: %s", w.Person.Name)
 	}
 
-	t.Logf("person person: ", w.Person.Name)
+	t.Logf("person person: %s", w.Person.Name)
 
 	if w.Route.Origin != "AS43391" {
 		t.Fatalf("No expected route data: %s", w.Route.Origin)
 	}
 
-	t.Logf("route origin: ", w.Route.Origin)
+	t.Logf("route origin: %s", w.Route.Origin)
 }
