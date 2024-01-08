@@ -1,8 +1,5 @@
 package ripego
 
-type afrinic struct {
-}
-
 // AfrinicCheck function
 func AfrinicCheck(search, whoisServer string) (*WhoisInfo, error) {
 	whoisData, err := getTcpContent(search, whoisServer)

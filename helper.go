@@ -16,13 +16,18 @@ var (
 func getTcpContent(search string, host string) (s string, err error) {
 
 	conn, err := net.DialTimeout("tcp", net.JoinHostPort(host, "43"), time.Second*28)
-	defer conn.Close()
 
 	if err != nil {
 		return s, err
 	}
 
-	conn.Write([]byte(search + "\r\n"))
+	defer conn.Close()
+
+	_, err = conn.Write([]byte(search + "\r\n"))
+
+	if err != nil {
+		return s, err
+	}
 
 	buffer, err := io.ReadAll(conn)
 
@@ -45,7 +50,7 @@ func parseRPSLValue(whoisText string, class string, section string) string {
 	for sc.Scan() {
 		var line = sc.Text()
 		if strings.HasPrefix(line, class) {
-			if hasIn == false {
+			if !hasIn {
 				hasIn = true
 			}
 		}
