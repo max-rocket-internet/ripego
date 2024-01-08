@@ -2,7 +2,7 @@ package ripego
 
 import (
 	"bufio"
-	"io/ioutil"
+	"io"
 	"net"
 	"regexp"
 	"strings"
@@ -24,7 +24,7 @@ func getTcpContent(search string, host string) (s string, err error) {
 
 	conn.Write([]byte(search + "\r\n"))
 
-	buffer, err := ioutil.ReadAll(conn)
+	buffer, err := io.ReadAll(conn)
 
 	if err != nil {
 		return s, err
